@@ -14,9 +14,33 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+      <div class="container">
+        <a class="navbar-brand" href="/">SWEP Records</a>
+
+        <% if admin_signed_in? %>
+          <div class="ms-auto">
+            <span class="text-white me-3">Logged in as <strong><%= current_admin.email %></strong></span>
+            <%= link_to 'Change Password', edit_admin_registration_path, class: "btn btn-sm btn-outline-light me-2" %>
+            <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-danger" %>
+          </div>
+        <% else %>
+          <div class="ms-auto">
+            <%= link_to 'Login', new_admin_session_path, class: "btn btn-sm btn-light" %>
+          </div>
+        <% end %>
+      </div>
+    </nav>
+
     <%= yield %>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
