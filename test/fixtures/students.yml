@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  matric_no: MyString
+  name: MyString
+  department: MyString
+  level: MyString
+  session: MyString
+  ca: 1
+  exam: 1
+  total: 1
+
+two:
+  matric_no: MyString
+  name: MyString
+  department: MyString
+  level: MyString
+  session: MyString
+  ca: 1
+  exam: 1
+  total: 1

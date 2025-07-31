@@ -1,0 +1,42 @@
+<div class="container">
+  <h3>Student Records</h3>
+  <div class="text-end mb-3">
+    <%= link_to 'Add New', new_student_path, class: 'btn btn-sm btn-primary' %>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Matric No</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Level</th>
+        <th>Session</th>
+        <th>CA</th>
+        <th>Exam</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.matric_no %></td>
+          <td><%= student.name %></td>
+          <td><%= student.department %></td>
+          <td><%= student.level %></td>
+          <td><%= student.session %></td>
+          <td><%= student.ca %></td>
+          <td><%= student.exam %></td>
+          <td><%= student.total %></td>
+          <td>
+            <%= link_to 'Edit', edit_student_path(student), class: 'btn btn-sm btn-warning' %>
+            <%= link_to 'Delete', student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @students %>
+</div>

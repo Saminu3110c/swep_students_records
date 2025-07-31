@@ -28,7 +28,7 @@
           <div class="ms-auto">
             <span class="text-white me-3">Logged in as <strong><%= current_admin.email %></strong></span>
             <%= link_to 'Change Password', edit_admin_registration_path, class: "btn btn-sm btn-outline-light me-2" %>
-            <%= link_to 'Logout', destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-danger" %>
+            <%= button_to 'Logout', destroy_admin_session_path, method: :delete, class: "btn btn-sm btn-danger" %>
           </div>
         <% else %>
           <div class="ms-auto">
