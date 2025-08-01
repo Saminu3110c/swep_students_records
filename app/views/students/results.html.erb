@@ -1,0 +1,52 @@
+<h2 class="mb-4">Student Results</h2>
+
+<%= form_with url: results_path, method: :get, local: true, class: "row g-3 mb-4" do %>
+  <div class="col-md-4">
+    <%= label_tag :session, 'Session' %>
+    <%= select_tag :session, options_for_select(Student.distinct.pluck(:session).compact.uniq.sort, @session_filter), include_blank: 'All', class: 'form-select' %>
+  </div>
+
+  <div class="col-md-4">
+    <%= label_tag :level, 'Level' %>
+    <%= select_tag :level, options_for_select(Student.distinct.pluck(:level).compact.uniq.sort, @level_filter), include_blank: 'All', class: 'form-select' %>
+  </div>
+
+  <div class="col-md-4 mt-4">
+    <%= submit_tag 'Filter', class: 'btn btn-primary mt-2' %>
+  </div>
+<% end %>
+
+<div class="alert alert-info">
+  <strong>Total Students:</strong> <%= @total_students %> |
+  <strong>Passed:</strong> <%= @passed %> (<%= @pass_percentage %>%) |
+  <strong>Failed:</strong> <%= @failed %> (<%= @fail_percentage %>%)
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-light">
+    <tr>
+      <th>Name</th>
+      <th>Matric No</th>
+      <th>Session</th>
+      <th>Level</th>
+      <th>CA</th>
+      <th>Exam</th>
+      <th>Total</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.matric_no %></td>
+        <td><%= student.session %></td>
+        <td><%= student.level %></td>
+        <td><%= student.ca %></td>
+        <td><%= student.exam %></td>
+        <td><%= student.total %></td>
+        <td><%= student.grade %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

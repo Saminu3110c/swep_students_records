@@ -1,0 +1,64 @@
+<%= form_with(model: student, local: true) do |f| %>
+  <% if student.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(student.errors.count, "error") %> prevented saving:</h5>
+      <ul>
+        <% student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :matric_no, "Matric Number" %>
+        <%= f.text_field :matric_no, class: "form-control", required: true %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control", required: true %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :department %>
+        <%= f.text_field :department, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :level %>
+        <%= f.text_field :level, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= f.label :session %>
+        <%= f.text_field :session, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="mb-3">
+        <%= f.label :ca, "CA Score" %>
+        <%= f.number_field :ca, class: "form-control", min: 0, max: 40 %>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="mb-3">
+        <%= f.label :exam, "Exam Score" %>
+        <%= f.number_field :exam, class: "form-control", min: 0, max: 60 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-end">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>

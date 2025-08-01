@@ -3,6 +3,14 @@
   <div class="text-end mb-3">
     <%= link_to 'Add New', new_student_path, class: 'btn btn-sm btn-primary' %>
   </div>
+  <div class="mb-3 d-flex gap-2">
+    <%= form_with url: import_students_path, local: true, html: { multipart: true }, class: "d-flex gap-2" do |form| %>
+      <%= form.file_field :file, required: true, class: "form-control" %>
+      <%= form.submit "Import CSV", class: "btn btn-sm btn-primary" %>
+    <% end %>
+
+    <%= link_to "Export CSV", export_students_path(format: :csv), class: "btn btn-sm btn-success" %>
+  </div>
 
   <table class="table table-bordered table-striped">
     <thead class="table-dark">
@@ -15,6 +23,7 @@
         <th>CA</th>
         <th>Exam</th>
         <th>Total</th>
+        <th>Grade</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -29,6 +38,7 @@
           <td><%= student.ca %></td>
           <td><%= student.exam %></td>
           <td><%= student.total %></td>
+          <td><%= student.grade %></td>
           <td>
             <%= link_to 'Edit', edit_student_path(student), class: 'btn btn-sm btn-warning' %>
             <%= link_to 'Delete', student_path(student), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
@@ -38,5 +48,5 @@
     </tbody>
   </table>
 
-  <%= paginate @students %>
+  
 </div>
